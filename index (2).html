@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feliz Día de la Amistad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fondo-centro: #24483f;
+    --fondo-borde: #10241f;
+    --crema: #fff3a6;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { margin: 0; min-height: 100%; }
+
+  body {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 24px 16px;
+    background: radial-gradient(circle at 50% 35%, var(--fondo-centro), var(--fondo-borde) 70%);
+    font-family: "Fraunces", Georgia, serif;
+    color: var(--crema);
+  }
+
+  svg {
+    width: min(92vw, 420px);
+    height: auto;
+    overflow: visible;
+  }
+
+  h1 {
+    margin: 0;
+    font-weight: 300;
+    font-size: clamp(1.4rem, 5vw, 2rem);
+    letter-spacing: 0.02em;
+  }
+
+  p {
+    margin: 0;
+    max-width: 30ch;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.5;
+    opacity: .85;
+  }
+
+  /* Cada anillo de pétalos se "abre" al cargar la página.
+     Los anillos interiores aparecen primero (--d es el retraso). */
+  .anillo {
+    transform-origin: 0 0;
+    animation: abrir 1.1s cubic-bezier(.2, .8, .2, 1) var(--d, 0s) both;
+  }
+
+  @keyframes abrir {
+    from { opacity: 0; transform: scale(.2) rotate(-50deg); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anillo { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<svg viewBox="0 0 400 520" role="img" aria-label="Ramo de tres rosas amarillas atadas con un lazo dorado y una tarjeta de amistad">
+  <defs>
+    <!-- Degradado del pétalo: más oscuro en la base, más claro en la punta -->
+    <linearGradient id="degradado-petalo" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0"   stop-color="#e0a100"/>
+      <stop offset=".55" stop-color="#f6c820"/>
+      <stop offset="1"   stop-color="#ffe873"/>
+    </linearGradient>
+
+    <!-- Sombra suave entre anillos para dar profundidad -->
+    <filter id="sombra" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#8a5a00" flood-opacity=".4"/>
+    </filter>
+
+    <!-- Un pétalo apuntando hacia arriba desde el centro (0,0) -->
+    <g id="petalo">
+      <path d="M0 0 C-36 -12 -44 -60 -8 -80 Q0 -84 8 -80 C44 -60 36 -12 0 0Z"
+            fill="url(#degradado-petalo)"
+            stroke="#c98f00" stroke-opacity=".55" stroke-width="1"
+            vector-effect="non-scaling-stroke"/>
+      <!-- Brillo en el borde del pétalo -->
+      <path d="M-20 -62 Q0 -74 20 -62" fill="none" stroke="#fff3a6"
+            stroke-width="2" stroke-linecap="round" opacity=".7"/>
+    </g>
+
+    <!-- Una hoja apuntando hacia la derecha -->
+    <g id="hoja">
+      <path d="M0 0 C12 -16 42 -18 62 0 C42 18 12 16 0 0Z" fill="#3e7d4f"/>
+      <path d="M4 0 H52" stroke="#2a5c3a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    </g>
+  </defs>
+
+  <!-- Tallos (se cruzan cerca del lazo) -->
+  <g fill="none" stroke="#2a5c3a" stroke-width="6" stroke-linecap="round">
+    <path d="M200 165 C200 270 200 400 200 500"/>
+    <path d="M100 272 C112 350 200 400 235 500"/>
+    <path d="M302 262 C290 345 200 400 165 500"/>
+  </g>
+
+  <!-- Hojas -->
+  <use href="#hoja" transform="translate(200 345) rotate(-25) scale(.9)"/>
+  <use href="#hoja" transform="translate(200 360) rotate(205) scale(.9)"/>
+  <use href="#hoja" transform="translate(150 368) rotate(160)"/>
+  <use href="#hoja" transform="translate(250 365) rotate(20)"/>
+
+  <!-- Lazo dorado -->
+  <g fill="#c98f00" stroke="#c98f00" stroke-linecap="round">
+    <path d="M198 452 L188 488 M202 452 L214 488" stroke-width="5" fill="none"/>
+    <path d="M200 448 C180 430 168 452 184 462 C192 466 198 456 200 448Z" stroke="none"/>
+    <path d="M200 448 C220 430 232 452 216 462 C208 466 202 456 200 448Z" stroke="none"/>
+    <circle cx="200" cy="450" r="6" fill="#e0a100" stroke="none"/>
+  </g>
+
+  <!-- Pétalos caídos -->
+  <g opacity=".9">
+    <use href="#petalo" transform="translate(110 505) rotate(80) scale(.25)"/>
+    <use href="#petalo" transform="translate(142 512) rotate(200) scale(.2)"/>
+    <use href="#petalo" transform="translate(72 488) rotate(300) scale(.2)"/>
+  </g>
+
+  <!-- Tarjeta de amistad colgada del lazo: cambia el texto aquí -->
+  <path d="M206 452 Q232 470 259 456" fill="none" stroke="#c98f00" stroke-width="1.5" stroke-linecap="round"/>
+  <g transform="translate(290 480) rotate(10)">
+    <rect x="-46" y="-28" width="92" height="56" rx="6" fill="#fff3a6" stroke="#c98f00" stroke-width="1.5"/>
+    <circle cx="-34" cy="-18" r="3" fill="#24483f"/>
+    <g fill="#16302b" text-anchor="middle" font-size="12">
+      <text x="4" y="0">Para ti,</text>
+      <text x="4" y="16">con cariño</text>
+    </g>
+  </g>
+
+  <!-- Rosas: cada <g class="rosa"> se rellena con pétalos desde JavaScript -->
+  <g transform="translate(100 272) scale(.62)"><g class="rosa"></g></g>
+  <g transform="translate(302 262) scale(.68)"><g class="rosa"></g></g>
+  <g transform="translate(200 165) scale(.78)"><g class="rosa"></g></g>
+</svg>
+
+<h1>Feliz Día de la Amistad</h1>
+<p>Las rosas amarillas simbolizan la amistad, la alegría y el cariño sincero.</p>
+
+<script>
+  const NS = "http://www.w3.org/2000/svg";
+
+  // Anillos de pétalos, del exterior al interior.
+  // n = cantidad de pétalos, escala = tamaño, giro = rotación inicial
+  const anillos = [
+    { n: 7, escala: 1.25, giro: 0  },
+    { n: 6, escala: 0.95, giro: 18 },
+    { n: 5, escala: 0.68, giro: 30 },
+    { n: 4, escala: 0.45, giro: 10 },
+  ];
+
+  document.querySelectorAll(".rosa").forEach(rosa => {
+    anillos.forEach((anillo, i) => {
+      const grupo = document.createElementNS(NS, "g");
+      grupo.setAttribute("class", "anillo");
+      grupo.setAttribute("filter", "url(#sombra)");
+      // Los anillos del interior aparecen primero
+      grupo.style.setProperty("--d", ((anillos.length - 1 - i) * 0.18) + "s");
+
+      for (let k = 0; k < anillo.n; k++) {
+        const angulo = anillo.giro + (k * 360) / anillo.n;
+        const petalo = document.createElementNS(NS, "use");
+        petalo.setAttribute("href", "#petalo");
+        petalo.setAttribute("transform", `rotate(${angulo}) scale(${anillo.escala})`);
+        grupo.appendChild(petalo);
+      }
+      rosa.appendChild(grupo);
+    });
+
+    // Espiral del centro de la rosa
+    const centro = document.createElementNS(NS, "path");
+    centro.setAttribute("class", "anillo");
+    centro.setAttribute("d", "M0 -1 C4 -1 5 4 0 5 C-7 5 -8 -5 0 -8 C10 -9 12 4 4 9");
+    centro.setAttribute("fill", "none");
+    centro.setAttribute("stroke", "#8a5a00");
+    centro.setAttribute("stroke-width", "1.6");
+    centro.setAttribute("stroke-linecap", "round");
+    centro.setAttribute("opacity", ".65");
+    rosa.appendChild(centro);
+  });
+</script>
+
+</body>
+</html>
